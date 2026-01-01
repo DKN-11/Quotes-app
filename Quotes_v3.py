@@ -14,15 +14,18 @@ if "saved_quotes" not in st.session_state:
 if "current_quote" not in st.session_state:
     st.session_state.current_quote = None
 
-# ---------------- MOBILE BUTTON STYLING ----------------
+# ---------------- MOBILE-FRIENDLY BUTTON CSS (CLOUD SAFE) ----------------
 st.markdown(
     """
     <style>
-    div.stButton > button {
-        width: 100%;
-        height: 50px;
-        font-size: 18px;
-        border-radius: 12px;
+    /* Make Streamlit buttons mobile-friendly (local + cloud) */
+    div.stButton > button,
+    div.stButton > button:hover,
+    div.stButton > button:active {
+        width: 100% !important;
+        height: 52px !important;
+        font-size: 18px !important;
+        border-radius: 14px !important;
     }
     </style>
     """,
@@ -69,6 +72,7 @@ with tab1:
                 border-radius:12px;
                 box-shadow:0px 4px 10px rgba(0,0,0,0.1);
                 text-align:center;
+                margin-top:15px;
             ">
                 <p style="font-size:20px; font-style:italic;">
                     “{quote}”
@@ -80,6 +84,8 @@ with tab1:
             """,
             unsafe_allow_html=True
         )
+
+        st.markdown("<br>", unsafe_allow_html=True)
 
         if st.button("❤️ Save this quote"):
             st.session_state.saved_quotes.append(
